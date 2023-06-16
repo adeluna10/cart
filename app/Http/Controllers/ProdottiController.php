@@ -8,19 +8,23 @@ use Illuminate\Support\Str;
 
 class ProdottiController extends Controller
 {
-    public function list(){
+    public function list()
+    {
         return Prodotto::all();
     }
 
-    public function get(Prodotto $prodotto){
+    public function get(Prodotto $prodotto)
+    {
         return $prodotto;
     }
 
-    public function crea(){
+    public function crea()
+    {
         return view('prodotti.crea');
     }
 
-    public function salva(Request $request){
+    public function salva(Request $request)
+    {
         $request->validate([
             'nome' => ['required'],
             'prezzo' => ['required', 'numeric', 'min:1']
