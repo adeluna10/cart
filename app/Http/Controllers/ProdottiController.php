@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prodotto;
+use App\Service\Prodotto\CreaProdotto;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,22 +28,18 @@ class ProdottiController extends Controller
         return view('prodotti.crea');
     }
 
-    public function salva(Request $request): RedirectResponse
+    public function salva(Request $request, CreaProdotto $creaProdotto): RedirectResponse
     {
         $request->validate([
             'nome' => ['required'],
             'prezzo' => ['required', 'numeric', 'min:1']
         ]);
 
-        $prodotto = new Prodotto();
+        $creaProdotto->execute(
+            $request->nome,
+            $request->prezzo
+        );
 
-        $prodotto->sku = Str::uuid();
-
-        $prodotto->nome = $request->nome;
-        $prodotto->prezzo = $request->prezzo;
-
-        $prodotto->save();
-
-        return redirect('/prodotto')->with('success', 'Prodotto creato');
+        return redirect()->route('form-prodotto')->with('success', 'Prodotto creato');
     }
 }

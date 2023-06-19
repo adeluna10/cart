@@ -17,7 +17,7 @@ class ProdottoFactory
 
         $prodotto->nome = $nome;
         $prodotto->prezzo = $prezzo;
-        $prodotto->sku = Str::uuid();
+        $prodotto->sku = Str::uuid()->toString();
 
         return $prodotto;
     }

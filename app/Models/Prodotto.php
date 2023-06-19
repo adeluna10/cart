@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,4 +13,11 @@ class Prodotto extends Model
     protected $table = 'prodotti';
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    //    protected function nome(): Attribute
+    //    {
+    //        return Attribute::make(
+    //            set: static fn(string $nome) => strtoupper($nome)
+    //        );
+    //    }
 }

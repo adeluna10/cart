@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Prodotto;
+use App\Observers\ProdottoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Prodotto::observe(ProdottoObserver::class);
     }
 
     /**

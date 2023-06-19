@@ -7,7 +7,6 @@ use App\Models\Prodotto;
 
 class CreaProdotto
 {
-
     public function __construct(
         private ProdottoFactory $prodottoFactory
     ) {
