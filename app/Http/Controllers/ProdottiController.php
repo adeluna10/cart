@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrello;
 use App\Models\Prodotto;
 use App\Service\Prodotto\CreaProdotto;
 use Illuminate\Database\Eloquent\Collection;
@@ -28,7 +29,9 @@ class ProdottiController extends Controller
 
     public function crea(): View
     {
-        return view('prodotti.crea');
+        return view('prodotti.crea', [
+            'carrelli' => Carrello::all()
+        ]);
     }
 
     public function salva(Request $request, CreaProdotto $creaProdotto): RedirectResponse
@@ -38,10 +41,18 @@ class ProdottiController extends Controller
             'prezzo' => ['required', 'numeric', 'min:1']
         ]);
 
-        $creaProdotto->execute(
+        $prodotto = $creaProdotto->execute(
             $request->nome,
             $request->prezzo
         );
+
+        if($idCarrello = $request->carrello) {
+            $carrello = Carrello::find($idCarrello);
+
+            $prodotto->carrello()
+                ->attach($carrello);
+            $prodotto->save();
+        }
 
         return redirect()->route('form-prodotto')->with('success', 'Prodotto creato');
     }

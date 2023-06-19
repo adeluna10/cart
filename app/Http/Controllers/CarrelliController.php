@@ -7,7 +7,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-
 class CarrelliController extends Controller
 {
     public function list(): View
@@ -16,7 +15,9 @@ class CarrelliController extends Controller
 
         // return view('carrelli.list', ['carrelli' => $carrelli]);
         // È la stessa cosa di
-        return view('carrelli.list', compact('carrelli'));
+        return view('carrelli.list', [
+            'carrelli' => Carrello::all()
+        ]);
     }
 
     public function newCarrello(): View
@@ -40,5 +41,23 @@ class CarrelliController extends Controller
     public function get(Carrello $carrello): Carrello
     {
         return $carrello;
+    }
+
+    public function togliProdotto(Request $request): RedirectResponse
+    {
+        // Controller senza controlli e nessun abbellimento
+
+        if(
+            (!$idCarrello = $request->carrello) ||
+            (!$idProdotto = $request->prodotto)
+        ) {
+            throw new \Exception('Dati mancanti');
+        }
+
+        $carrello = Carrello::find($idCarrello);
+
+        $carrello->prodotti()->detach($idProdotto);
+
+        return redirect()->route('carrelli');
     }
 }

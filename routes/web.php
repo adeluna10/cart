@@ -26,3 +26,4 @@ Route::get('/carrelli', [CarrelliController::class, 'list'])->name('carrelli');
 Route::get('/carrello', [CarrelliController::class, 'newCarrello'])->name('form-carrello');
 Route::post('/carrello', [CarrelliController::class, 'salva']);
 Route::get('/carrelli/{carrello}', [CarrelliController::class, 'get']);
+Route::delete('/rimuovi-da-wishlist', [CarrelliController::class, 'togliProdotto'])->name('elimina-associazione-carrello');
