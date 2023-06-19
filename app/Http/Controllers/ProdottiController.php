@@ -12,10 +12,13 @@ use Illuminate\View\View;
 
 class ProdottiController extends Controller
 {
-    /** @return Collection<int, Prodotto> */
-    public function list(): Collection
+    public function list(): View
     {
-        return Prodotto::all();
+        $prodotti = Prodotto::all();
+
+        return view('prodotti.list', [
+            'prodotti' => $prodotti
+        ]);
     }
 
     public function get(Prodotto $prodotto): Prodotto

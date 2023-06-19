@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $nome
+ */
 class Prodotto extends Model
 {
     use HasFactory;
@@ -14,10 +17,11 @@ class Prodotto extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    //    protected function nome(): Attribute
-    //    {
-    //        return Attribute::make(
-    //            set: static fn(string $nome) => strtoupper($nome)
-    //        );
-    //    }
+    protected function nome(): Attribute
+    {
+        return Attribute::make(
+            // set: static fn(string $nome) => strtoupper($nome)
+            get: static fn (string $nome) => 'CAMBIATO ' . $nome
+        );
+    }
 }
