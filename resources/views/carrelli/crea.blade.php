@@ -1,8 +1,9 @@
+@extends('layout.layout')
+
 <html>
 <body>
-@if(\Illuminate\Support\Facades\Session::has('carrello-creato'))
-    <p style="color: green"> {{\Illuminate\Support\Facades\Session::get('carrello-creato')}} </p>
-@endif
+
+@include('layout.messaggio-successo', ['nomeMessaggioSuccesso' => 'success'])
 
 <form method="post">
     @csrf

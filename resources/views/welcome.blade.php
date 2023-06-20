@@ -1,3 +1,5 @@
-<a href="{{route('prodotti')}}">Prodotti</a> <br />
+@extends('layout.layout')
 
-<a href="{{route('carrelli')}}">Carrelli</a> <br />
+@section('content')
+    Welcome
+@endsection

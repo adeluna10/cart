@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssociazioneController;
 use App\Http\Controllers\CarrelliController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdottiController;
@@ -27,3 +28,5 @@ Route::get('/carrello', [CarrelliController::class, 'newCarrello'])->name('form-
 Route::post('/carrello', [CarrelliController::class, 'salva']);
 Route::get('/carrelli/{carrello}', [CarrelliController::class, 'get']);
 Route::delete('/rimuovi-da-wishlist', [CarrelliController::class, 'togliProdotto'])->name('elimina-associazione-carrello');
+Route::get('/associa', [AssociazioneController::class, 'associaProdottiCarrello'])->name('associa-prodotti-carrello');
+Route::post('/associa', [AssociazioneController::class, 'salvaAssociazioneProdottiCarrelli']);
