@@ -41,18 +41,10 @@ class ProdottiController extends Controller
             'prezzo' => ['required', 'numeric', 'min:1']
         ]);
 
-        $prodotto = $creaProdotto->execute(
+        $creaProdotto->execute(
             $request->nome,
             $request->prezzo
         );
-
-        if($idCarrello = $request->carrello) {
-            $carrello = Carrello::find($idCarrello);
-
-            $prodotto->carrello()
-                ->attach($carrello);
-            $prodotto->save();
-        }
 
         return redirect()->route('form-prodotto')->with('success', 'Prodotto creato');
     }

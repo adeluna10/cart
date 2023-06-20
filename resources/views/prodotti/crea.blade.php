@@ -1,26 +1,15 @@
 @extends('layout.layout')
-
-<html>
-<body>
-
-@if(\Illuminate\Support\Facades\Session::has('success'))
-    <p style="color: green"> {{\Illuminate\Support\Facades\Session::get('success')}} </p>
-@endif
+@section('content')
+    @include('layout.messaggio', ['nomeMessaggio' => 'success'])
 
     <form method="post">
         @csrf
-        <select id="carrello" name="carrello">
-            <option value="0">...</option>
-            @foreach($carrelli as $carrello)
-                <option value="{{$carrello->id}}"> {{$carrello->nome}} </option>
-            @endforeach
-        </select>
         <div>
             <label for="nome">Nome</label>
             <input id="nome" name="nome" type="text"
                    @if (false === $errors->has('nome'))
                        value="{{ old('nome') }}"
-                   @endif
+                @endif
             >
             @error('nome')
             <p style="color: red"> {{$message}}</p>
@@ -32,7 +21,7 @@
             <input id="prezzo" name="prezzo" type="text"
                    @if (false === $errors->has('prezzo'))
                        value="{{ old('prezzo') }}"
-                   @endif
+                @endif
             >
             @error('prezzo')
             <p style="color: red"> {{$message}}</p>
@@ -41,5 +30,5 @@
 
         <button type="submit">Invia</button>
     </form>
-</body>
-</html>
+
+@endsection

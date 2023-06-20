@@ -29,6 +29,11 @@ class Prodotto extends Model
 
     public function carrello(): BelongsToMany
     {
-        return $this->belongsToMany(Carrello::class, 'prodotti_carrelli', 'id_prodotto', 'id_carrello');
+        return $this->belongsToMany(
+            Carrello::class,
+            'prodotti_carrelli',
+            'id_prodotto',
+            'id_carrello'
+        );
     }
 }

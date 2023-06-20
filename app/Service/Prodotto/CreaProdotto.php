@@ -10,7 +10,6 @@ class CreaProdotto
     public function __construct(
         private ProdottoFactory $prodottoFactory
     ) {
-
     }
 
     public function execute(string $nome, int $prezzo): Prodotto

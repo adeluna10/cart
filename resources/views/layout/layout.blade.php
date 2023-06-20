@@ -1,10 +1,10 @@
+<!DOCTYPE html>
+
 <html>
 <head>
     <style>
         .content {
             margin-top: 5rem;
-            display: flex;
-            justify-content: center;
         }
     </style>
 </head>

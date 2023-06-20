@@ -1,12 +1,13 @@
 @extends('layout.layout')
 
-@include('layout.messaggio-successo', ['nomeMessaggioSuccesso' => 'messaggio-successo'])
-
 @section('content')
+    @include('layout.messaggio', ['nomeMessaggio' => 'messaggio'])
     <form method="post">
-        @csrf
         <div>
             @include('layout.errore-form', ['nomeCampo' => 'carrello'])
+        </div>
+        @csrf
+        <div>
             <label for="carrello">Carrello</label>
             <select name="carrello" id="carrello">
                 <option value="">...</option>

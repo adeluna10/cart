@@ -12,11 +12,15 @@ class Carrello extends Model
     use HasFactory;
 
     protected $table = 'carrelli';
-    // protected $hidden = ['id', 'created_at', 'updated_at'];
     protected $visible = ['nome'];
 
     public function prodotti(): BelongsToMany
     {
-        return $this->belongsToMany(Prodotto::class, 'prodotti_carrelli', 'id_carrello', 'id_prodotto');
+        return $this->belongsToMany(
+            Prodotto::class,
+            'prodotti_carrelli',
+            'id_carrello',
+            'id_prodotto'
+        );
     }
 }

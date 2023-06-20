@@ -1,24 +1,21 @@
 @extends('layout.layout')
+@section('content')
 
-<html>
-<body>
+    @include('layout.messaggio', ['nomeMessaggio' => 'message'])
 
-@include('layout.messaggio-successo', ['nomeMessaggioSuccesso' => 'success'])
+    <form method="post">
+        @csrf
 
-<form method="post">
-    @csrf
+        @error('nome')
+        <p style="color: red">{{$message}}</p>
+        @enderror
+        <div>
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text">
+        </div>
 
-    @error('nome')
-        <p style="color: red" >{{$message}}</p>
-    @enderror
-    <div>
-        <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text">
-    </div>
-
-    <button type="submit">Invia</button>
+        <button type="submit">Invia</button>
 
 
-</form>
-</body>
-</html>
+    </form>
+@endsection

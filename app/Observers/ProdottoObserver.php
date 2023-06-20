@@ -29,17 +29,11 @@ class ProdottoObserver
         );
     }
 
-    /**
-     * Handle the Prodotto "created" event.
-     */
     public function creating(Prodotto $prodotto): void
     {
         $this->nomeMaiuscolo($prodotto);
     }
 
-    /**
-     * Handle the Prodotto "updated" event.
-     */
     public function updating(Prodotto $prodotto): void
     {
         $this->nomeMaiuscolo($prodotto);
