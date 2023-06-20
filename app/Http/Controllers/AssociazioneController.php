@@ -37,9 +37,9 @@ class AssociazioneController extends Controller
 
         // uguale ma con query
         // $prodottoPresente = Prodotto::leftJoin('prodotti_carrelli', 'prodotti.id', '=', 'id_prodotto')
-            // ->where('id_carrello', '=', $carrello->id)
-            // ->where('id_prodotto', '=', $idProdotto)
-            // ->first();
+        // ->where('id_carrello', '=', $carrello->id)
+        // ->where('id_prodotto', '=', $idProdotto)
+        // ->first();
 
         // Uguale ma con query carrello
         $prodottoPresente = Carrello::leftJoin('prodotti_carrelli', 'carrelli.id', '=', 'id_carrello')
@@ -47,7 +47,7 @@ class AssociazioneController extends Controller
             ->where('id_prodotto', '=', $idProdotto)
             ->first();
 
-        if(null  === $prodottoPresente){
+        if(null  === $prodottoPresente) {
             $carrello->prodotti()->attach($valori['prodotto']);
 
             $carrello->save();

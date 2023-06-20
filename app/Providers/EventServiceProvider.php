@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Carrello;
 use App\Models\Prodotto;
+use App\Observers\CarrelloObserver;
 use App\Observers\ProdottoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -28,6 +30,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Prodotto::observe(ProdottoObserver::class);
+        Carrello::observe(CarrelloObserver::class);
     }
 
     /**
